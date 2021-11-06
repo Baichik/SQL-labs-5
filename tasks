@@ -1,0 +1,44 @@
+--task 1 
+SELECT Dl.Dnumber, Dl.Dlocation, Dp.Dname FROM DEPARTMENT Dp
+INNER JOIN DEPT_LOCATIONS Dl 
+On Dp.dnumber  = Dl.Dnumber;
+
+--task 2
+SELECT Dp.Dname, Dp.Dnumber, e.fname, e.lname 
+FROM DEPARTMENT Dp
+INNER JOIN EMPLOYEE e 
+ON Dp.Dnumber = e.dnumber;
+
+--task 3
+SELECT Dp.Dname, Dp.Dnumber, Dl.dlocation, e.fname, e.lname 
+FROM DEPARTMENT Dp
+INNER JOIN EMPLOYEE e 
+ON Dp.Dnumber = e.dnumber
+INNER JOIN DEPT_LOCATIONS Dl 
+On Dp.dnumber  = Dl.Dnumber
+WHERE Dl.Dlocation LIKE 'Houston';
+
+--task 4 
+SELECT Dp.Dname, COUNT(e.fname)
+FROM DEPARTMENT Dp
+INNER JOIN EMPLOYEE e 
+ON Dp.Dnumber = e.dnumber
+GROUP BY Dp.Dname;
+
+
+--task 5
+SELECT Dp.Dname, e.fname, e.Address
+FROM DEPARTMENT Dp
+INNER JOIN EMPLOYEE e 
+ON Dp.Dnumber = e.dnumber
+WHERE Dp.Mgr_ssn == e.ssn;
+
+--task 6
+SELECT Dp.Dname, e.fname, e.salary -
+	(SELECT MIN(salary) FROM EMPLOYEE e) As minSal
+FROM DEPARTMENT Dp
+INNER JOIN EMPLOYEE e 
+ON Dp.Dnumber = e.dnumber
+GROUP BY e.ssn;
+
+--task 7 
